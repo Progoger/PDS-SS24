@@ -14,5 +14,3 @@ Additional extension - Robustness:
 • An implementation should ensure that whenever possible, a signal dispatched to a process should eventually arrive at it. There are situations when it is not reasonable to require that all signals arrive at their destination, in particular when a signal is sent to a process on a different node and communication between the nodes is temporarily lost.
 
 • When a node crashes we want to be able to restart it and continue working.
-
-Initial git repository from university - https://softech-git.informatik.uni-kl.de/students/pds/ss24/warcraft-iii/-/tree/final_project/minidote/lib?ref_type=heads

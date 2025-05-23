@@ -1,0 +1,17 @@
+//scenario 1
+clock = Vectorclock.new()
+clock = Vectorclock.increment(clock, :"minidote1@127.0.0.1")
+{:ok, clock} = Minidote.update_objects([{{"K", :antidote_crdt_counter_pn, "V"}, :increment, 20}], clock)
+{:ok, clock} = Minidote.update_objects([{{"K", :antidote_crdt_counter_pn, "V"}, :increment, 42}, {{"AK", :antidote_crdt_counter_pn, "V"}, :increment, 5}, {{"K", :antidote_crdt_counter_pn, "V"}, :increment, 50}], :ignore)
+Minidote.read_objects([{"K", :antidote_crdt_counter_pn, "V"}], :ignore)
+
+//random commands
+
+{:ok, clock} = Minidote.update_objects([{{"K", :antidote_crdt_counter_pn, "V"}, :increment, 20}], clock)
+
+//2 updates with same key
+{:ok, clock} = Minidote.update_objects([{{"K", :antidote_crdt_counter_pn, "V"}, :increment, 42}, {{"AK", :antidote_crdt_counter_pn, "V"}, :increment, 5}, {{"K", :antidote_crdt_counter_pn, "V"}, :increment, 50}], :ignore)
+
+Minidote.read_objects([{"K", :antidote_crdt_counter_pn, "V"}], :ignore)
+
+Minidote.read_objects([{"K", :antidote_crdt_counter_pn, "V"}], clock)
